@@ -1,28 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import {
   Avatar,
   Container,
   Button,
-  CssBaseline,
   MenuItem,
   Typography,
-} from "@material-ui/core";
-import {
-  List,
-  ListItem,
-  ListItemText,
-  ListItemAvatar,
   Divider,
-  NativeSelect,
+  FormControl,
+  Select,
+  InputLabel,
 } from "@material-ui/core";
-import { InputLabel, FormControl, Select } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import { withStyles } from "@material-ui/core/styles";
 import "../App.css";
-// import authedUser from "../actions/authedUser";
-// import users from "../actions/users";
+//import PropTypes from "prop-types";
 import { setAuthedUser, clearAuthedUser } from "../actions/authedUser";
 
 const styles = (theme) => ({
@@ -46,19 +38,23 @@ class Login extends React.Component {
     selectedUser: "",
   };
 
-  handleLogin = (e) => {
-    const { user } = this.state;
-    const { dispatch } = this.props;
-    dispatch(setAuthedUser(user));
-    this.setState(() => {
-      return {
-        user: user,
-      };
-    });
+  handleChangeUser = (value) => {
+    this.setState(() => ({
+      selectedUser: value,
+    }));
+    console.log("this is the user", this.state.selectedUser);
+    console.log("this is the the value", value);
   };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { dispatch } = this.props;
+    dispatch(setAuthedUser(this.state.selectedUser));
+  };
+
   render() {
-    console.log("props", this.props.users);
-    const { users, classes, handleLogin } = this.props;
+    console.log("selectedUser state", this.state.selectedUser);
+    const { users } = this.props;
     return (
       <div className="login">
         <Container component="main" maxWidth="xs">
@@ -69,37 +65,48 @@ class Login extends React.Component {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
+            <FormControl variant="filled">
+              <InputLabel disableAnimation htmlFor="select-user">
+                Select User
+              </InputLabel>
 
-            <FormControl variant="filled" className={classes.formControl}>
-              <InputLabel>Select User</InputLabel>
               <Select
                 labelId="demo-simple-select-disabled-label"
                 id="demo-simple-select-disabled"
-                value={users}
-                displayEmpty
-                className={classes.selectEmpty}
-                inputProps={{ "aria-label": "Without label" }}
+                value={this.state.selectedUser || ""}
+                inputProps={{
+                  "aria-label": "Without label",
+                  name: "user",
+                  id: "select-user",
+                }}
+                onChange={(e) => this.handleChangeUser(e.target.value)}
               >
-                <MenuItem value="" disabled>
+                {/*
+                  <MenuItem value="" disabled>
                   Select User
                 </MenuItem>
-                {users.map((user) => (
-                  <MenuItem key={user.id}>
-                    <ListItemAvatar>
-                      <Avatar>{user.avatar}</Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary={user.name} />
-                  </MenuItem>
-                ))}
+                */}
+                {users &&
+                  Object.keys(users).map((user) => (
+                    <div>
+                      <MenuItem value={user} key={user}>
+                        <Avatar
+                          alt={users[user].avatarURL}
+                          src={users[user].avatarURL}
+                        />
+                        {users[user].name}
+                      </MenuItem>
+                      <Divider />
+                    </div>
+                  ))}
               </Select>
             </FormControl>
 
             <Button
-              type="submit"
               fullWidth
               variant="contained"
               color="primary"
-              className="{classes.submit}"
+              onClick={this.handleSubmit}
             >
               Sign In
             </Button>
@@ -110,17 +117,14 @@ class Login extends React.Component {
   }
 }
 
-function mapStateToProps({ users, authedUser }) {
+// Login.propTypes = {
+//   users: PropTypes.object.isRequired,
+// };
+
+function mapStateToProps({ users }) {
   return {
-    users: Object.values(users).map((user) => {
-      return {
-        id: user.id,
-        name: user.name,
-        avatar: user.avatarURL,
-      };
-    }),
-    selectedUser: authedUser,
+    users,
   };
 }
 
-export default connect(mapStateToProps)(withStyles(styles)(Login));
+export default connect(mapStateToProps)(Login);

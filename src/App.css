@@ -11,14 +11,19 @@ body {
   box-sizing: border-box;
 }
 
+/*LOGIN STYLING */
 .login {
   padding: 10rem 0rem;
 }
 
 .MuiInputLabel-filled.MuiInputLabel-shrink {
-  transform: translate(0px, 0px), scale(0) !important;
+  transform: translate(-12px, -10px), scale(1) !important;
 }
 
 .MuiInputLabel-formControl {
   top: 10px !important;
+}
+
+.MuiFormControl-root {
+  min-width: 100% !important;
 }

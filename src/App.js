@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import loadingBar from "react-redux-loading";
 import { connect } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { handleInitialData } from "./actions/shared";
@@ -8,41 +7,53 @@ import NewQuestion from "./components/NewQuestion";
 import LeaderBoard from "./components/LeaderBoard";
 import QuestionDetail from "./components/QuestionDetail";
 import Login from "./components/Login";
+import Nav from "./components/Nav";
 
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData());
   }
   render() {
-    console.log();
+    const { authedUser, authedUserAvatar } = this.props;
     return (
       <Router>
-        <Login />
-        <Home />
-        <NewQuestion />
-        <LeaderBoard />
-        <QuestionDetail />
+        {this.props.LoggedIn && (
+          <Nav authedUser={authedUser} authedUserAvatar={authedUserAvatar} />
+        )}
+        {!this.props.LoggedIn ? (
+          <Login />
+        ) : (
+          <div>
+            <Route path="/" exact component={Home} />
+            <Route path="/add" component={NewQuestion} />
+            <Route path="/leaderboard" component={LeaderBoard} />
+            <Route path="/question/:id" component={QuestionDetail} />
+          </div>
+        )}
       </Router>
     );
   }
 }
 
-export default connect()(App);
+function mapStateToProps({ authedUser, users }) {
+  return {
+    LoggedIn: authedUser !== null,
+    authedUser: authedUser ? users[authedUser].name : "",
+    authedUserAvatar: authedUser ? users[authedUser].avatarURL : "",
+  };
+}
 
-// import React from "react";
-// import "./App.css";
-// import Login from "./components/Login";
-// import { connect } from "react-redux";
-// import { useHistory } from "react-router-dom";
-
-// function App() {
-//   let history = useHistory()
-
-//   return (
-//     <div className="App">
-//       <Login />
-//     </div>
-//   );
+// function mapStateToProps({ users, authedUser }) {
+//   return {
+//     users: Object.keys(users).map((user) => {
+//       return {
+//         id: user.id,
+//         name: user.name,
+//         avatar: user.avatarURL,
+//       };
+//     }),
+//     selectedUser: authedUser,
+//   };
 // }
 
-// export default App;
+export default connect(mapStateToProps)(App);
