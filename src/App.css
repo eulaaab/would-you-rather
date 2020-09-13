@@ -27,3 +27,18 @@ body {
 .MuiFormControl-root {
   min-width: 100% !important;
 }
+
+.link,
+.link:any-link,
+.link:visited,
+.link:hover {
+  text-decoration: none;
+}
+
+a,
+a:any-link,
+a:visited,
+a:hover {
+  text-decoration: none;
+  color: #252525;
+}

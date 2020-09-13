@@ -1,14 +1,27 @@
 import React from "react";
-import Home from "./Home";
-import LeaderBoard from "./LeaderBoard";
-import NewQuestion from "./NewQuestion";
+import "../App.css";
+// import { BreadCrumbs, Link } from "@material-ui/core";
+import { NavLink } from "react-router-dom";
+import { Avatar } from "@material-ui/core";
+import { connect } from "react-redux";
 
-export default function Nav() {
+function Nav(props) {
   return (
     <div>
-      <Home />
-      <LeaderBoard />
-      <NewQuestion />
+      <NavLink to="/" exact>
+        Home
+      </NavLink>
+
+      <NavLink to="/add" className="link">
+        New Question
+      </NavLink>
+
+      <NavLink to="/leaderboard">Leader Board</NavLink>
+      <p>{props.authedUser}</p>
+      <Avatar src={props.authedUserAvatar} alt={props.authedUserAvatar} />
+      <button>Logout</button>
     </div>
   );
 }
+
+export default connect()(Nav);
