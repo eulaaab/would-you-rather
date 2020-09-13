@@ -1,13 +1,13 @@
-import {getInitialData} from "../utils/api"
-import {receiveUsers} from '../actions/users'
-import {receiveQuestions} from "../actions/questions"
+import { getInitialData } from "../utils/api";
+import { receiveUsers } from "../actions/users";
+import { receiveQuestions } from "../actions/questions";
+//import {setAuthedUser} from "../actions/authedUser"
 
-export default handleInitialData () {
+export function handleInitialData() {
   return (dispatch) => {
-    return getInitialData().then(({users,questions}) => {
-        dispatch(receiveUsers(users))
-        dispatch(receiveQuestions(questions))
-    }
-    )
-  }
+    return getInitialData().then(({ users, questions }) => {
+      dispatch(receiveUsers(users));
+      dispatch(receiveQuestions(questions));
+    });
+  };
 }
