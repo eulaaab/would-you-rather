@@ -14,6 +14,7 @@ class QuestionDetail extends Component {
   render() {
     // const { questionData } = this.props;
     const { id, question, author, authorImage } = this.props;
+
     return (
       <div>
         <p>Poll</p>
