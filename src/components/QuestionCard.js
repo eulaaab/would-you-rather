@@ -8,15 +8,13 @@ class QuestionCard extends Component {
     console.log("question option One", this.props.question.optionOne);
     const { author, question, id } = this.props;
     return (
-      <div className="tile-item">
-        <div className="tile-header">{author.name} asks</div>
-        <div className="tile-body">
-          <div className="question-body">
-            <div className="would-you">
-              Would you rather{question.optionOne.text}
-            </div>
-            <div className="question-text">{question.optionOne.votes}...</div>
-            <button className="btn-default">View Poll</button>
+      <div>
+        <div>{author.name} asks</div>
+        <div>
+          <div>
+            <div>Would you rather{question.optionOne.text}</div>
+            <div>{question.optionOne.votes}...</div>
+            <button>View Poll</button>
           </div>
         </div>
       </div>
