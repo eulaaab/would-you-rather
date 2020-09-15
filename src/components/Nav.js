@@ -2,7 +2,7 @@ import React from "react";
 import "../App.css";
 // import { BreadCrumbs, Link } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
-import { Avatar } from "@material-ui/core";
+import { Avatar, Button } from "@material-ui/core";
 import { connect } from "react-redux";
 
 function Nav(props) {
@@ -17,7 +17,7 @@ function Nav(props) {
       <NavLink to="/leaderboard">Leader Board</NavLink>
       <p>{props.authedUser}</p>
       <Avatar src={props.authedUserAvatar} alt={props.authedUserAvatar} />
-      <button>Logout</button>
+      <Button color="primary">Logout</Button>
     </div>
   );
 }
