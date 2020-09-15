@@ -11,11 +11,9 @@ function Nav(props) {
       <NavLink to="/" exact>
         Home
       </NavLink>
-
       <NavLink to="/add" className="link">
         New Question
       </NavLink>
-
       <NavLink to="/leaderboard">Leader Board</NavLink>
       <p>{props.authedUser}</p>
       <Avatar src={props.authedUserAvatar} alt={props.authedUserAvatar} />
