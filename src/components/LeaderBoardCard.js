@@ -1,25 +1,56 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Avatar } from "@material-ui/core";
+import {
+  Grid,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Paper,
+  withStyles,
+} from "@material-ui/core";
 
-class LeaderBoardCard extends Component {
-  render() {
-    const { user } = this.props;
-    const numQuestions = user.questions.length;
-    const numAnswered = Object.keys(user.answers).length;
-    return (
-      <div>
-        <p>USER</p>
-        {user.name}
-        <Avatar src={user.avatarURL} />
+const styles = (theme) => ({
+  root: {
+    padding: 20,
+  },
+  paper: {
+    width: "100%",
+    marginTop: theme.spacing.unit * 3,
+    overflowX: "auto",
+  },
+  table: {
+    minWidth: 700,
+  },
+});
+
+const LeaderBoardCard = (props) => {
+  const { user, classes } = props;
+  const numQuestions = user.questions.length;
+  const numAnswered = Object.keys(user.answers).length;
+  return (
+    <div>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <Avatar src={user.avatarURL} />
+          </TableCell>
+        </TableRow>
+        <TableCell>{user.name}</TableCell>
+
         <p>Questions asked:</p>
-        <div>{numQuestions}</div>
+        <TableCell numeric>{numQuestions}</TableCell>
+
         <p>Questions answered:</p>
-        <div>numAnswered</div>
-      </div>
-    );
-  }
-}
+        <TableCell numeric>{numAnswered}</TableCell>
+        <p>Total:</p>
+        <TableCell numeric>{numQuestions + numAnswered}</TableCell>
+      </TableBody>
+    </div>
+  );
+};
 
 function mapStateToProps({ users }, { id }) {
   return {
@@ -27,4 +58,4 @@ function mapStateToProps({ users }, { id }) {
   };
 }
 
-export default connect(mapStateToProps)(LeaderBoardCard);
+export default connect(mapStateToProps)(withStyles(styles)(LeaderBoardCard));
