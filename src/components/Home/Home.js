@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { AppBar, Tabs, Tab, Grid, Paper } from "@material-ui/core";
 import QuestionCard from "../QuestionCard/QuestionCard";
+import "./Home.scss";
 
 class Home extends Component {
   state = {
@@ -28,16 +29,20 @@ class Home extends Component {
           </Tabs>
         </Paper>
         {value === 0 && (
-          <div>
+          <div className="question__container">
             {unansweredIds.map((qID) => (
-              <QuestionCard id={qID} key={qID} />
+              <Paper>
+                <QuestionCard id={qID} key={qID} />
+              </Paper>
             ))}
           </div>
         )}
         {value === 1 && (
-          <div>
+          <div className="question__container">
             {answeredIds.map((qID) => (
-              <QuestionCard id={qID} key={qID} />
+              <Paper>
+                <QuestionCard id={qID} key={qID} />
+              </Paper>
             ))}
           </div>
         )}

@@ -1,0 +1,9 @@
+.question {
+  &__container {
+    display: flex;
+    margin: 5rem;
+    justify-content: space-between;
+    //width: 100%;
+    flex-wrap: wrap;
+  }
+}

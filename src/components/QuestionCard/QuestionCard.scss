@@ -1,0 +1,26 @@
+.question {
+  &__card {
+    // margin: 0 auto;
+    width: 28rem;
+    height: 15rem;
+    //margin-top: 2rem;
+    text-align-last: center;
+    padding-left: 2rem;
+    //margin-bottom: 1rem;
+  }
+  &__user {
+    display: flex;
+    width: 100%;
+  }
+  &__avatar {
+    margin-right: 1rem;
+  }
+}
+
+p {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+.MuiPaper-root.MuiPaper-elevation1.MuiPaper-rounded {
+  margin-bottom: 2rem !important;
+}
