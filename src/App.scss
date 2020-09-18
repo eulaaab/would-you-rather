@@ -1,8 +1,8 @@
-header,
 .nav {
   &__container {
     display: flex !important;
     place-content: space-between;
+    padding-top: 1rem;
   }
   &__right {
     display: flex;

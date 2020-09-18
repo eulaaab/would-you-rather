@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import "./LeaderBoardCard.scss";
 import { Avatar } from "@material-ui/core";
 import {
   Grid,
@@ -11,6 +12,7 @@ import {
   Paper,
   Tabs,
   Tab,
+  Typography,
   withStyles,
 } from "@material-ui/core";
 
@@ -39,16 +41,25 @@ const LeaderBoardCard = (props) => {
           <TableCell>
             <Avatar src={user.avatarURL} />
           </TableCell>
+
+          <TableCell>{user.name}</TableCell>
         </TableRow>
-        <TableCell>{user.name}</TableCell>
+        <TableCell numeric>
+          {" "}
+          <p>Questions asked:</p> {numQuestions}
+        </TableCell>
 
-        <p>Questions asked:</p>
-        <TableCell numeric>{numQuestions}</TableCell>
-
-        <p>Questions answered:</p>
-        <TableCell numeric>{numAnswered}</TableCell>
-        <p>Score:</p>
-        <TableCell numeric>{numQuestions + numAnswered}</TableCell>
+        <TableCell numeric>
+          {" "}
+          <p>Questions answered:</p>
+          {numAnswered}
+        </TableCell>
+        <div className="leader-card__right">
+          <Typography variant="h6">SCORE:</Typography>
+          <Typography variant="h3" style={{ color: "#FF0000" }}>
+            {numQuestions + numAnswered}
+          </Typography>
+        </div>
       </TableBody>
     </div>
   );
