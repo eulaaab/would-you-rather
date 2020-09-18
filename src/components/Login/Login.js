@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import "./Login.scss";
 import {
   Avatar,
   Container,
@@ -12,9 +13,9 @@ import {
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { withStyles } from "@material-ui/core/styles";
-import "../App.css";
+import "../../App.css";
 import PropTypes from "prop-types";
-import { setAuthedUser } from "../actions/authedUser";
+import { setAuthedUser } from "../../actions/authedUser";
 
 const styles = (theme) => ({
   root: {
@@ -102,6 +103,7 @@ class Login extends React.Component {
             variant="contained"
             color="primary"
             onClick={this.handleSubmit}
+            className="login__button"
           >
             Sign In
           </Button>

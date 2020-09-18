@@ -16,11 +16,14 @@ function Nav(props) {
               Home
             </NavLink>
           </Button>
-
-          <NavLink to="/add" className="link">
-            NEW QUESTION
-          </NavLink>
-          <NavLink to="/leaderboard">LEADER BOARD</NavLink>
+          <Button color="secondary">
+            <NavLink to="/add" className="link">
+              NEW QUESTION
+            </NavLink>
+          </Button>
+          <Button color="secondary">
+            <NavLink to="/leaderboard">LEADER BOARD</NavLink>
+          </Button>
         </Breadcrumbs>
       </div>
       <div className="nav__right">

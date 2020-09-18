@@ -9,6 +9,8 @@ import {
   TableHead,
   TableRow,
   Paper,
+  Tabs,
+  Tab,
   withStyles,
 } from "@material-ui/core";
 

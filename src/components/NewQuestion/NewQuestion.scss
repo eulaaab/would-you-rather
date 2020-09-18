@@ -1,0 +1,56 @@
+.new-question {
+  &__container {
+    width: 50rem;
+    margin: 0 auto 1rem;
+  }
+  &__form {
+    width: 40rem;
+    margin: 2rem auto;
+    padding-bottom: 2rem;
+  }
+  &__button.MuiButton-fullWidth {
+    width: 15rem !important;
+    padding: auto 2rem !important;
+    align-self: center;
+    margin-top: 1rem !important;
+  }
+}
+
+.MuiTypography-root.MuiTypography-h4 {
+  padding-top: 1rem;
+  text-align: center;
+}
+
+.MuiInputBase-root.MuiFilledInput-root.MuiFilledInput-underline.MuiInputBase-formControl {
+  height: 4rem;
+}
+
+// .MuiInputBase-input.MuiFilledInput-input {
+//   margin-right: 1rem;
+//   margin-left: 1rem;
+// }
+
+.MuiInputBase-root {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.MuiInputBase-input.MuiFilledInput-input {
+  //margin-left: 2rem;
+}
+
+.MuiInputLabel-formControl {
+  //left: 50px;
+}
+
+.MuiTypography-h6 {
+  text-align: center;
+}
+
+.MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated.MuiInputLabel-filled {
+  text-align: center;
+}
+
+.MuiTypography-h5 {
+  margin-bottom: 1rem !important;
+}

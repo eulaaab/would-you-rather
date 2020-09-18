@@ -7,7 +7,7 @@ import Home from "./components/Home/Home";
 import NewQuestion from "./components/NewQuestion/NewQuestion";
 import LeaderBoard from "./components/LeaderBoard/LeaderBoard";
 import QuestionDetail from "./components/QuestionDetail/QuestionDetail";
-import Login from "./components/Login";
+import Login from "./components/Login/Login";
 import Nav from "./components/Nav";
 
 class App extends Component {
