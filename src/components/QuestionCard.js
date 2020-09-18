@@ -12,6 +12,7 @@ class QuestionCard extends Component {
     //console.log("author", this.props.author.name);
     //console.log("question option One", this.props.question.optionOne);
     const { author, question, id } = this.props;
+    //const answeredQuestions =
     return (
       <div>
         <div>{author.name} asks</div>
@@ -21,7 +22,7 @@ class QuestionCard extends Component {
             <div>{question.optionOne.text}... OR</div>
 
             <button onClick={this.showDetails}>
-              <Link to={`/questions/${id}`}>Answer Poll</Link>
+              <Link to={`/questions/${id}`}>View Poll</Link>
             </button>
           </div>
         </div>

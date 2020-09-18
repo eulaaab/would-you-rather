@@ -45,7 +45,7 @@ const LeaderBoardCard = (props) => {
 
         <p>Questions answered:</p>
         <TableCell numeric>{numAnswered}</TableCell>
-        <p>Total:</p>
+        <p>Score:</p>
         <TableCell numeric>{numQuestions + numAnswered}</TableCell>
       </TableBody>
     </div>
