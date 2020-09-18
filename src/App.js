@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import "./App.scss";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { handleInitialData } from "./actions/shared";
-import Home from "./components/Home";
-import NewQuestion from "./components/NewQuestion";
-import LeaderBoard from "./components/LeaderBoard";
-import QuestionDetail from "./components/QuestionDetail";
+import Home from "./components/Home/Home";
+import NewQuestion from "./components/NewQuestion/NewQuestion";
+import LeaderBoard from "./components/LeaderBoard/LeaderBoard";
+import QuestionDetail from "./components/QuestionDetail/QuestionDetail";
 import Login from "./components/Login";
 import Nav from "./components/Nav";
 

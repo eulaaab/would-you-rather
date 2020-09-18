@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import LeaderBoardCard from "./LeaderBoardCard";
+import LeaderBoardCard from "../LeaderBoardCard/LeaderBoardCard";
 class LeaderBoard extends Component {
   render() {
     const { leaderBoardData } = this.props;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { AppBar, Tabs, Tab, Grid, Paper } from "@material-ui/core";
-import QuestionCard from "./QuestionCard";
+import QuestionCard from "../QuestionCard/QuestionCard";
 
 class Home extends Component {
   state = {
@@ -21,7 +21,6 @@ class Home extends Component {
     console.log("unanswered", unansweredIds);
     return (
       <div>
-        <p>Home</p>
         <Paper>
           <Tabs value={value} onChange={this.toggleTab} centered>
             <Tab label="Unanswered Questions" />

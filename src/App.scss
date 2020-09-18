@@ -1,0 +1,16 @@
+header,
+.nav {
+  &__container {
+    display: flex !important;
+    place-content: space-between;
+  }
+  &__right {
+    display: flex;
+  }
+}
+
+.nav {
+  &__user {
+    align-self: flex-end;
+  }
+}

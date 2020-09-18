@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import QuestionDetail from "./QuestionDetail";
+import QuestionDetail from "../QuestionDetail/QuestionDetail";
 
 class QuestionCard extends Component {
   showDetails = (e) => {
