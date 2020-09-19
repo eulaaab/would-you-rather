@@ -171,6 +171,7 @@ class QuestionDetail extends Component {
                     variant="contained"
                     color="primary"
                     style={{ marginBottom: "2rem" }}
+                    onSubmit={this.handleSubmitAnswer}
                   >
                     Submit
                   </Button>
