@@ -1,7 +1,7 @@
 import { saveQuestion, saveQuestionAnswer } from "../utils/api";
 export const RECEIVE_QUESTIONS = "RECEIVE QUESTIONS";
 export const ADD_QUESTION = "ADD QUESTION";
-export const ADD_ANSWER_QUESTION = "ADD_ANSWER_QUESTION";
+export const SAVE_ANSWER = "SAVE_ANSWER";
 
 export function receiveQuestions(questions) {
   return {
@@ -17,8 +17,8 @@ export function addQuestion(question) {
   };
 }
 
-//two text values payloads - send data from your application to your store
-export function handleAddQuestion(optionOneText, optionTwoText) {
+//two text values payloads - send data from your application to your store - new question async action creator function
+export function handleAddNewQuestion(optionOneText, optionTwoText) {
   return (dispatch, getState) => {
     const { authedUser } = getState();
     return saveQuestion({
@@ -28,22 +28,26 @@ export function handleAddQuestion(optionOneText, optionTwoText) {
     }).then((question) => dispatch(addQuestion(question)));
   };
 }
-export function addQuestionAnswer(authedUser, qId, answer) {
+
+//save the answer action creator function
+export function saveAnswer(authedUser, qId, answer) {
   return {
-    type: ADD_ANSWER_QUESTION,
+    type: SAVE_ANSWER,
     authedUser,
     qId,
     answer,
   };
 }
 
-export function handleAddQuestionAnswer(qId, answer) {
+//action to take the answered value from the unanaswered question
+export function handleSaveQuestionAnswer(qId, answer) {
   return (dispatch, getState) => {
     const { authedUser } = getState();
+    //then save it.
     return saveQuestionAnswer({
       authedUser,
       qId,
       answer,
-    }).then(dispatch(addQuestionAnswer(authedUser, qId, answer)));
+    }).then(dispatch(saveQuestionAnswer(authedUser, qId, answer)));
   };
 }

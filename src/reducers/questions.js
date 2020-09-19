@@ -1,7 +1,7 @@
 import {
   RECEIVE_QUESTIONS,
   ADD_QUESTION,
-  ANSWER_QUESTION,
+  ADD_QUESTION_ANSWER,
 } from "../actions/questions";
 
 export default function questions(state = {}, action) {
@@ -11,6 +11,19 @@ export default function questions(state = {}, action) {
         ...state,
         ...action.questions,
       };
+      case ADD_QUESTION:
+        const {question} = action;
+        return {
+          ...state,
+          [action.question.id] : question
+        }
+         case ADD_QUESTION_ANSWER:
+           return {
+             ...state,
+             [action.qId] : {
+               ...state{action.qID}
+             }
+           }
     default:
       return state;
   }
