@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import {
   FormControl,
   TextField,
@@ -9,9 +10,50 @@ import {
   Typography,
 } from "@material-ui/core";
 import "./NewQuestion.scss";
+import { handleAddNewQuestion } from "../../actions/questions";
+import { Redirect } from "react-router-dom";
 
-export default class NewQuestion extends Component {
+class NewQuestion extends Component {
+  state = {
+    optionOneText: "",
+    optionTwoText: "",
+    toHome: false,
+  };
+
+  handleInputOneChange = (e) => {
+    const { optionOneText } = e.target.value;
+    this.setState(() => ({
+      optionOneText,
+    }));
+  };
+
+  handleInputTwoChange = (e) => {
+    const { optionTwoText } = e.target.value;
+    this.setState(() => ({
+      optionTwoText,
+    }));
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { optionOneText, optionTwoText } = this.state;
+
+    this.props
+      .dispatch(handleAddNewQuestion(optionOneText, optionTwoText))
+      .then(() => ({
+        // toHome: true,
+        optionOneText: "",
+        optionTwoText: "",
+      }));
+  };
   render() {
+    const { handleInputOneChange, handleInputTwoChange } = this.props;
+    const { optionOneText, optionTwoText, toHome } = this.state;
+    console.log("handle input one", this.state.optionOneText);
+    console.log("handle input two", optionTwoText);
+    // if (toHome) {
+    //   return <Redirect to="/" />;
+    // }
     return (
       <>
         <Paper>
@@ -23,29 +65,35 @@ export default class NewQuestion extends Component {
           <Paper>
             <Typography variant="h4">CREATE NEW QUESTION:</Typography>
             <Paper className="new-question__form">
-              <FormControl>
+              <form onSubmit={this.handleSubmit}>
                 <Typography variant="h5">Would You Rather:</Typography>
                 <TextField
-                  id="filled-basic"
+                  type="text"
+                  id="optionOneText"
+                  defaultValue={optionOneText}
                   label="Option One"
                   variant="filled"
+                  onChange={handleInputOneChange}
                 />
                 <Typography variant="h6">... OR ...</Typography>
                 <TextField
-                  id="filled-basic"
+                  type="text"
+                  id="optionTwoText"
+                  defaultValue={optionTwoText}
                   label="Option Two"
                   variant="filled"
-                  centered
+                  onChange={handleInputTwoChange}
                 />
                 <Button
                   fullWidth
                   variant="contained"
                   color="primary"
+                  type="submit"
                   className="new-question__button"
                 >
-                  Submit New Poll
+                  Add Question
                 </Button>
-              </FormControl>
+              </form>
             </Paper>
           </Paper>
         </div>
@@ -53,3 +101,5 @@ export default class NewQuestion extends Component {
     );
   }
 }
+
+export default connect()(NewQuestion);
