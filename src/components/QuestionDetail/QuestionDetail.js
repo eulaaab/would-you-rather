@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link, withRouther } from "react-router-dom";
 import { connect } from "react-redux";
 import "./QuestionDetail.scss";
+import { handleSaveQuestionAnswer } from "../../actions/questions";
 import {
   Avatar,
   Box,
@@ -19,6 +20,22 @@ import {
 } from "@material-ui/core";
 
 class QuestionDetail extends Component {
+  state = {
+    selectedAnswer: "",
+  };
+  handleSubmitAnswer = (e) => {
+    e.preventDefault();
+    const { authedUser, id } = this.props;
+    const { selectedAnswer } = this.state;
+
+    this.props.dispatch(
+      handleSaveQuestionAnswer({
+        qId: id,
+        authedUser,
+        answer: selectedAnswer,
+      })
+    );
+  };
   render() {
     const {
       id,
@@ -136,7 +153,7 @@ class QuestionDetail extends Component {
                     {author.name}
                   </Typography>{" "}
                 </div>
-                <FormControl>
+                <form>
                   <RadioGroup>
                     <FormControlLabel
                       value="optionOne"
@@ -149,15 +166,15 @@ class QuestionDetail extends Component {
                       label={question.optionTwo.text}
                     />
                   </RadioGroup>
-                </FormControl>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  style={{ marginBottom: "2rem" }}
-                >
-                  Submit
-                </Button>
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    style={{ marginBottom: "2rem" }}
+                  >
+                    Submit
+                  </Button>
+                </form>
               </div>
             </Paper>
           </div>
