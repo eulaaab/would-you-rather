@@ -1,0 +1,16 @@
+.detail {
+  &__card {
+    width: 28rem;
+    text-align-last: center;
+    padding-left: 2rem;
+    //margin-top: 2rem;
+  }
+  &__user {
+    display: flex;
+    width: 100%;
+    padding-top: 2rem;
+  }
+  &__avatar {
+    margin-right: 1rem;
+  }
+}
