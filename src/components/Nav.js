@@ -6,11 +6,11 @@ import Login from "./Login/Login";
 import { NavLink, Link, Redirect } from "react-router-dom";
 import { Breadcrumbs, Avatar, Button } from "@material-ui/core";
 import { connect } from "react-redux";
-import { clearAuthedUser } from "../actions/authedUser";
+import { setAuthedUser, clearAuthedUser } from "../actions/authedUser";
 
 function Nav(props) {
   const handleLogout = () => {
-    props.dispatch(clearAuthedUser());
+    props.dispatch(setAuthedUser(null));
   };
   return (
     <div className="nav__container">
@@ -34,7 +34,9 @@ function Nav(props) {
           <div>{props.authedUser} </div>
           <Avatar src={props.authedUserAvatar} alt={props.authedUserAvatar} />
 
-          <Button onClick={handleLogout}>Logout</Button>
+          <Button onClick={handleLogout}>
+            <NavLink to="/">Logout</NavLink>
+          </Button>
         </Breadcrumbs>
       </div>
     </div>
