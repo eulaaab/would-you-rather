@@ -12,20 +12,22 @@ export default function questions(state = {}, action) {
         ...action.questions,
       };
     case ADD_QUESTION:
-      const { question } = action;
+      //const { question } = action;
       return {
         ...state,
-        [question.id]: question,
+        [action.id]: action,
       };
     case SAVE_ANSWER:
-      const { authedUser, qId, answer } = action;
+      //  const { authedUser, id, answer } = action;
       return {
         ...state,
-        [qId]: {
-          ...state[qId],
+        [action.id]: {
+          ...state[action.qid],
           [action.answer]: {
-            ...state[qId][answer],
-            votes: state[qId][answer].votes.concat([authedUser]),
+            ...state[action.qid][action.answer],
+            votes: state[action.qid][action.answer].votes.concat([
+              action.authedUser,
+            ]),
           },
         },
       };

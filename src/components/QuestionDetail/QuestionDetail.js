@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, withRouther } from "react-router-dom";
+import { Link, withRouther, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import "./QuestionDetail.scss";
 import { handleSaveQuestionAnswer } from "../../actions/questions";
@@ -22,19 +22,25 @@ import {
 class QuestionDetail extends Component {
   state = {
     selectedAnswer: "",
+    toHome: false,
+  };
+
+  handleOptionChange = (value) => {
+    this.setState(() => ({
+      selectedAnswer: value,
+    }));
   };
   handleSubmitAnswer = (e) => {
     e.preventDefault();
     const { authedUser, id } = this.props;
     const { selectedAnswer } = this.state;
-
     this.props.dispatch(
-      handleSaveQuestionAnswer({
-        qId: id,
-        authedUser,
-        answer: selectedAnswer,
-      })
+      handleSaveQuestionAnswer({ qId: id, answer: selectedAnswer })
     );
+    this.setState(() => ({
+      selectedAnswer: "",
+      toHome: id ? false : true,
+    }));
   };
   render() {
     const {
@@ -50,7 +56,11 @@ class QuestionDetail extends Component {
       optionOneVotes,
       totalVotes,
     } = this.props;
-    console.log("option one percent", optionOnePercent);
+    console.log("selected answer", this.state.selectedAnswer);
+    const { selectedAnswer, toHome } = this.state;
+    if (toHome === true) {
+      return <Redirect to="/home" />;
+    }
     return (
       <div>
         {answeredQuestion ? (
@@ -153,25 +163,35 @@ class QuestionDetail extends Component {
                     {author.name}
                   </Typography>{" "}
                 </div>
-                <form>
-                  <RadioGroup>
-                    <FormControlLabel
-                      value="optionOne"
-                      control={<Radio />}
-                      label={question.optionOne.text}
-                    />
-                    <FormControlLabel
-                      value="optionTwo"
-                      control={<Radio />}
-                      label={question.optionTwo.text}
-                    />
-                  </RadioGroup>
+                <form onSubmit={this.handleSubmitAnswer}>
+                  <FormControl component="fieldset">
+                    <RadioGroup
+                      aria-label="question"
+                      name="question"
+                      value={this.state.selectedAnswer}
+                      onChange={(e) =>
+                        this.handleOptionChange(e.currentTarget.value)
+                      }
+                    >
+                      <FormControlLabel
+                        value="optionOne"
+                        control={<Radio />}
+                        label={question.optionOne.text}
+                      />
+                      <FormControlLabel
+                        value="optionTwo"
+                        control={<Radio />}
+                        label={question.optionTwo.text}
+                      />
+                    </RadioGroup>
+                  </FormControl>
                   <Button
                     fullWidth
                     variant="contained"
                     color="primary"
                     style={{ marginBottom: "2rem" }}
-                    onSubmit={this.handleSubmitAnswer}
+                    disabled={!this.state.selectedAnswer}
+                    type="submit"
                   >
                     Submit
                   </Button>
@@ -180,7 +200,8 @@ class QuestionDetail extends Component {
             </Paper>
           </div>
         )}
-        <LinearProgress
+        {/*
+          <LinearProgress
           value={(optionTwoVotes / totalVotes) * 100}
           variant="determinate"
         />{" "}
@@ -189,6 +210,7 @@ class QuestionDetail extends Component {
           component="div"
           color="textSecondary"
         >{`${optionOnePercent}%`}</Typography>
+        */}
       </div>
     );
   }

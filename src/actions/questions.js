@@ -40,14 +40,18 @@ export function saveAnswer(authedUser, qId, answer) {
 }
 
 //action to take the answered value from the unanaswered question
-export function handleSaveQuestionAnswer(qId, answer) {
+export function handleSaveQuestionAnswer(qid, answer) {
   return (dispatch, getState) => {
     const { authedUser } = getState();
+    return saveQuestionAnswer({ authedUser, qid, answer }).then(() =>
+      dispatch(saveAnswer(authedUser, qid, answer))
+    );
     //then save it.
-    return saveAnswer({
-      authedUser,
-      qId,
-      answer,
-    }).then(dispatch(saveQuestionAnswer(authedUser, qId, answer)));
+    //   return saveAnswer({
+    //     authedUser,
+    //     qId,
+    //     answer,
+    //   }).then(() => dispatch(saveQuestionAnswer(authedUser, qId, answer)));
+    // };
   };
 }
