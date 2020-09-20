@@ -40,6 +40,7 @@ class App extends Component {
               component={LeaderBoard}
               LoggedIn={LoggedIn}
             />
+            <Route path="/" exact component={Login} />
           </div>
         )}
       </Router>

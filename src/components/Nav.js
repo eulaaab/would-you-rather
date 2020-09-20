@@ -1,12 +1,17 @@
 import React from "react";
 import "../App.css";
 import "../App.scss";
+import Login from "./Login/Login";
 // import { BreadCrumbs, Link } from "@material-ui/core";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link, Redirect } from "react-router-dom";
 import { Breadcrumbs, Avatar, Button } from "@material-ui/core";
 import { connect } from "react-redux";
+import { clearAuthedUser } from "../actions/authedUser";
 
 function Nav(props) {
+  const handleLogout = () => {
+    props.dispatch(clearAuthedUser());
+  };
   return (
     <div className="nav__container">
       <div className="nav__left">
@@ -28,11 +33,19 @@ function Nav(props) {
         <Breadcrumbs aria-label="breadcrumb">
           <div>{props.authedUser} </div>
           <Avatar src={props.authedUserAvatar} alt={props.authedUserAvatar} />
-          <Button>Logout</Button>
+
+          <Button onClick={handleLogout}>Logout</Button>
         </Breadcrumbs>
       </div>
     </div>
   );
 }
 
-export default connect()(Nav);
+function mapStateToProps({ users, authedUser }) {
+  return {
+    authedUser,
+    users,
+  };
+}
+
+export default connect(mapStateToProps)(Nav);

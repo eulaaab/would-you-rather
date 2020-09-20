@@ -13,7 +13,6 @@ class LeaderBoard extends Component {
             <Tab label="LEADER BOARD" />
           </Tabs>
         </Paper>
-
         {leaderBoardData.map((id) => (
           <Paper className="leader__card" key={id}>
             <LeaderBoardCard key={id} id={id} />
