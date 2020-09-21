@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { AppBar, Tabs, Tab, Grid, Paper } from "@material-ui/core";
+import { Tabs, Tab, Paper } from "@material-ui/core";
 import QuestionCard from "../QuestionCard/QuestionCard";
 import "./Home.scss";
 

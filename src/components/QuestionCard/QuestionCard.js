@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import QuestionDetail from "../QuestionDetail/QuestionDetail";
 import "./QuestionCard.scss";
 import { Typography, Button, Avatar } from "@material-ui/core";
 

@@ -50,7 +50,7 @@ export function handleSaveQuestionAnswer(id, selected) {
       authedUser: authedUser,
       qid: id,
       answer: selected,
-    }).then((question) => dispatch(saveAnswer(authedUser, id, selected)));
+    }).then(() => dispatch(saveAnswer(authedUser, id, selected)));
     //then save it.
     //   return saveAnswer({
     //     authedUser,

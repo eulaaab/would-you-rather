@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, withRouter, Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import "./QuestionDetail.scss";
 import { handleSaveQuestionAnswer } from "../../actions/questions";
@@ -15,7 +15,6 @@ import {
   Tabs,
   Tab,
   Paper,
-  LinearProgress,
   CircularProgress,
 } from "@material-ui/core";
 
@@ -38,7 +37,6 @@ class QuestionDetail extends Component {
     this.props.dispatch(handleSaveQuestionAnswer(id, selected));
     this.setState(() => ({
       selected: "",
-      toHome: id ? false : true,
     }));
   };
   render() {
@@ -59,9 +57,9 @@ class QuestionDetail extends Component {
     console.log(" option one", optionOne);
     console.log("option two", optionTwo);
     const { toHome } = this.state;
-    if (toHome === true) {
-      return <Redirect to="/home" />;
-    }
+    // if (toHome === true) {
+    //   return <Redirect to="/home" />;
+    // }
     return (
       <div>
         {answeredQuestion ? (

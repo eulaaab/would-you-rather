@@ -1,12 +1,11 @@
 import React from "react";
 import "../App.css";
 import "../App.scss";
-import Login from "./Login/Login";
 // import { BreadCrumbs, Link } from "@material-ui/core";
-import { NavLink, Link, Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Breadcrumbs, Avatar, Button } from "@material-ui/core";
 import { connect } from "react-redux";
-import { setAuthedUser, clearAuthedUser } from "../actions/authedUser";
+import { setAuthedUser } from "../actions/authedUser";
 
 function Nav(props) {
   const handleLogout = () => {

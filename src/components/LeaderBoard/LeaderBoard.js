@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import LeaderBoardCard from "../LeaderBoardCard/LeaderBoardCard";
-import { Typography, Paper, Tabs, Tab } from "@material-ui/core";
+import { Paper, Tabs, Tab } from "@material-ui/core";
 import "./LeaderBoard.scss";
 class LeaderBoard extends Component {
   render() {

@@ -1,17 +1,11 @@
-import React, { Component, Fragment } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import "./LeaderBoardCard.scss";
 import { Avatar } from "@material-ui/core";
 import {
-  Grid,
-  Table,
   TableBody,
   TableCell,
-  TableHead,
   TableRow,
-  Paper,
-  Tabs,
-  Tab,
   Typography,
   withStyles,
 } from "@material-ui/core";
@@ -31,7 +25,7 @@ const styles = (theme) => ({
 });
 
 const LeaderBoardCard = (props) => {
-  const { user, classes } = props;
+  const { user } = props;
   const numQuestions = user.questions.length;
   const numAnswered = Object.keys(user.answers).length;
   return (

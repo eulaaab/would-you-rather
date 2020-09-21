@@ -12,26 +12,9 @@ import {
   InputLabel,
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import { withStyles } from "@material-ui/core/styles";
 import "../../App.css";
 import PropTypes from "prop-types";
-import { setAuthedUser, clearAuthedUser } from "../../actions/authedUser";
-
-const styles = (theme) => ({
-  root: {
-    display: "flex",
-  },
-  paper: {
-    marginRight: "8px",
-  },
-  formControl: {
-    margin: "8px",
-    minWidth: "120px",
-  },
-  selectEmpty: {
-    marginTop: "8px",
-  },
-});
+import { setAuthedUser } from "../../actions/authedUser";
 
 class Login extends React.Component {
   state = {
