@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   FormControl,
@@ -40,19 +41,21 @@ class NewQuestion extends Component {
     this.props
       .dispatch(handleAddNewQuestion(optionOne, optionTwo))
       .then(() => ({
-        toHome: true,
         optionOne: "",
         optionTwo: "",
       }));
+    this.setState({
+      toHome: true,
+    });
   };
   render() {
     //const { handleInputOneChange, handleInputTwoChange } = this.props;
-    const { toHome } = this.state;
+    //const { toHome } = this.state;
     // console.log("handle input one", this.state.optionOne);
     // console.log("handle input two", optionTwo);
-    // if (toHome) {
-    //   return <Redirect to="/" />;
-    // }
+    if (this.state.toHome === true) {
+      return <Redirect to="/home" />;
+    }
     return (
       <>
         <Paper>
