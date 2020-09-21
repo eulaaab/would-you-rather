@@ -14,3 +14,7 @@
     margin-right: 1rem;
   }
 }
+
+.MuiFormControl-root {
+  min-width: min-content !important;
+}

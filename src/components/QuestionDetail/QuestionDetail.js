@@ -18,6 +18,7 @@ import {
   Paper,
   CircularProgress,
 } from "@material-ui/core";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 class QuestionDetail extends Component {
   state = {
@@ -55,7 +56,7 @@ class QuestionDetail extends Component {
     } = this.props;
 
     if (!question) {
-      return <Redirect to="/error" />;
+      return <NotFound />;
     }
     return (
       <div>
@@ -69,33 +70,12 @@ class QuestionDetail extends Component {
             <Paper style={{ margin: "5rem 20rem" }}>
               <div className="detail__card">
                 <div className="detail__user" style={{ marginLeft: "1rem" }}>
+                  <Typography variant="h6">Asked by</Typography>{" "}
                   <Avatar
                     src={authorImage}
                     alt={authorImage}
                     className="detail__avatar"
                   />{" "}
-                  <Box position="relative" display="inline-flex">
-                    <CircularProgress
-                      variant="static"
-                      value={optionOnePercent}
-                    />
-                    <Box
-                      top={-3}
-                      left={0}
-                      bottom={0}
-                      right={0}
-                      position="absolute"
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography
-                        variant="caption"
-                        component="div"
-                        color="textSecondary"
-                      >{`${optionOnePercent}%`}</Typography>
-                    </Box>
-                  </Box>
                   <Typography color="primary" variant="h5">
                     {author.name}
                   </Typography>{" "}
@@ -120,23 +100,57 @@ class QuestionDetail extends Component {
                         disabled
                       />
                     )}
-                  </RadioGroup>
+                  </RadioGroup>{" "}
+                  <Box display="flex" alignItems="center">
+                    <Box width="100%" mr={1}>
+                      <LinearProgress
+                        variant="determinate"
+                        value={(optionOneVotes / totalVotes) * 100}
+                      />{" "}
+                      <Typography variant="body2" color="textSecondary">
+                        {optionOnePercent} %
+                      </Typography>
+                      <Box>
+                        {" "}
+                        <Typography variant="body2" color="textSecondary">
+                          {optionOneVotes} out of {totalVotes} votes
+                        </Typography>{" "}
+                      </Box>
+                    </Box>
+                  </Box>
+                  {question.optionTwo.votes.includes(authedUser) ? (
+                    <FormControlLabel
+                      value="optionTwo"
+                      control={<Radio />}
+                      label={question.optionTwo.text}
+                      checked
+                    />
+                  ) : (
+                    <FormControlLabel
+                      value="optionTwo"
+                      control={<Radio />}
+                      label={question.optionTwo.text}
+                      disabled
+                    />
+                  )}
+                  <Box display="flex" alignItems="center">
+                    <Box width="100%" mr={1}>
+                      <LinearProgress
+                        variant="determinate"
+                        value={(optionTwoVotes / totalVotes) * 100}
+                      />{" "}
+                      <Typography variant="body2" color="textSecondary">
+                        {optionTwoPercent} %
+                      </Typography>
+                      <Box>
+                        {" "}
+                        <Typography variant="body2" color="textSecondary">
+                          {optionTwoVotes} out of {totalVotes} votes
+                        </Typography>{" "}
+                      </Box>
+                    </Box>
+                  </Box>
                 </FormControl>
-                {question.optionTwo.votes.includes(authedUser) ? (
-                  <FormControlLabel
-                    value="optionTwo"
-                    control={<Radio />}
-                    label={question.optionTwo.text}
-                    checked
-                  />
-                ) : (
-                  <FormControlLabel
-                    value="optionTwo"
-                    control={<Radio />}
-                    label={question.optionTwo.text}
-                    disabled
-                  />
-                )}
               </div>
             </Paper>
           </div>
@@ -196,17 +210,6 @@ class QuestionDetail extends Component {
             </Paper>
           </div>
         )}
-        {/*
-          <LinearProgress
-          value={(optionTwoVotes / totalVotes) * 100}
-          variant="determinate"
-        />{" "}
-        <Typography
-          variant="caption"
-          component="div"
-          color="textSecondary"
-        >{`${optionOnePercent}%`}</Typography>
-        */}
       </div>
     );
   }
