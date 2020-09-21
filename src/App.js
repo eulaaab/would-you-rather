@@ -9,6 +9,7 @@ import LeaderBoard from "./components/LeaderBoard/LeaderBoard";
 import QuestionDetail from "./components/QuestionDetail/QuestionDetail";
 import Login from "./components/Login/Login";
 import Nav from "./components/Nav";
+import NotFound from "./components/NotFound/NotFound";
 
 class App extends Component {
   componentDidMount() {
@@ -41,6 +42,7 @@ class App extends Component {
               LoggedIn={LoggedIn}
             />
             <Route path="/" exact component={Login} />
+            <Route path="/error" exact component={NotFound} />
           </div>
         )}
       </Router>

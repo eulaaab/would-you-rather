@@ -18,17 +18,17 @@ class Home extends Component {
   render() {
     const { userQuestionsData } = this.props;
     const { answeredIds, unansweredIds } = userQuestionsData;
-    const { value } = this.state;
+    //const { value } = this.state;
     //console.log("unanswered", unansweredIds);
     return (
       <div>
         <Paper>
-          <Tabs value={value} onChange={this.toggleTab} centered>
+          <Tabs value={this.state.value} onChange={this.toggleTab} centered>
             <Tab label="Unanswered Questions" />
             <Tab label="Answered Questions" />
           </Tabs>
         </Paper>
-        {value === 0 && (
+        {this.state.value === 0 && (
           <div className="question__container">
             {unansweredIds.map((qID) => (
               <Paper key={qID}>
@@ -37,10 +37,10 @@ class Home extends Component {
             ))}
           </div>
         )}
-        {value === 1 && (
+        {this.state.value === 1 && (
           <div className="question__container">
             {answeredIds.map((qID) => (
-              <Paper>
+              <Paper key={qID}>
                 <QuestionCard id={qID} key={qID} />
               </Paper>
             ))}

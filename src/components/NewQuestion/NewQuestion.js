@@ -55,36 +55,37 @@ class NewQuestion extends Component {
     // }
     return (
       <>
-        {/*
-  <Paper>
-          <Tabs centered value="NEW QUESTION">
+        <Paper>
+          <Tabs centered value={0}>
             <Tab label="NEW QUESTION" />
           </Tabs>
         </Paper>
-        */}
+
         <div className="new-question__container">
           <Paper>
             <Typography variant="h4">CREATE NEW QUESTION:</Typography>
             <Paper className="new-question__form">
               <form onSubmit={this.handleSubmit}>
-                <Typography variant="h5">Would You Rather:</Typography>
-                <TextField
-                  type="text"
-                  id="optionOneText"
-                  label="Option One"
-                  defaultValue={this.state.optionOne}
-                  variant="filled"
-                  onChange={this.handleInputOneChange}
-                />
-                <Typography variant="h6">... OR ...</Typography>
-                <TextField
-                  type="text"
-                  id="optionTwoText"
-                  defaultValue={this.state.optionTwo}
-                  label="Option Two"
-                  variant="filled"
-                  onChange={this.handleInputTwoChange}
-                />
+                <FormControl>
+                  <Typography variant="h5">Would You Rather:</Typography>
+                  <TextField
+                    type="text"
+                    id="optionOneText"
+                    label="Option One"
+                    defaultValue={this.state.optionOne}
+                    variant="filled"
+                    onChange={this.handleInputOneChange}
+                  />
+                  <Typography variant="h6">... OR ...</Typography>
+                  <TextField
+                    type="text"
+                    id="optionTwoText"
+                    defaultValue={this.state.optionTwo}
+                    label="Option Two"
+                    variant="filled"
+                    onChange={this.handleInputTwoChange}
+                  />
+                </FormControl>
                 <Button
                   fullWidth
                   variant="contained"

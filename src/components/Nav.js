@@ -1,7 +1,6 @@
 import React from "react";
 import "../App.css";
 import "../App.scss";
-// import { BreadCrumbs, Link } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 import { Breadcrumbs, Avatar, Button } from "@material-ui/core";
 import { connect } from "react-redux";
@@ -32,7 +31,6 @@ function Nav(props) {
         <Breadcrumbs aria-label="breadcrumb">
           <div>{props.authedUser} </div>
           <Avatar src={props.authedUserAvatar} alt={props.authedUserAvatar} />
-
           <Button onClick={handleLogout}>
             <NavLink to="/">Logout</NavLink>
           </Button>

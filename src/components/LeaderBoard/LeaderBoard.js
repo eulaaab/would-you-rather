@@ -9,7 +9,7 @@ class LeaderBoard extends Component {
     return (
       <div className="leader__container">
         <Paper>
-          <Tabs value={0} centered>
+          <Tabs centered value={0}>
             <Tab label="LEADER BOARD" />
           </Tabs>
         </Paper>

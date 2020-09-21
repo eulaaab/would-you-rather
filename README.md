@@ -1,10 +1,11 @@
-# Would You Rather Project
+# Would You Rather Project - Eula
 
-This is the starter code for the final assessment project for Udacity's React & Redux course.
+This is a project for Udacity called Would You Rather React & Redux course for React Nanodegree Program. Users can answer questions, see which questions they haven’t answered, see how other people have voted, post questions, and see the ranking of users on the leaderboard.
 
-The `_DATA.js` file represents a fake database and methods that let you access the data. The only thing you need to edit in the ` _DATA.js` file is the value of `avatarURL`. Each user should have an avatar, so you’ll need to add the path to each user’s avatar.
+## Instructions to Install and Launch the Project
 
-Using the provided starter code, you'll build a React/Redux front end for the application. We recommend using the [Create React App](https://github.com/facebook/create-react-app) to bootstrap the project.
+- install all project dependencies with `npm install`
+- start the app with `npm start`
 
 ## Data
 

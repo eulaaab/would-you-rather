@@ -1,3 +1,25 @@
-.leader__card {
-  text-align: -webkit-center !important;
+.leader {
+  &__card {
+    display: flex;
+    flex-direction: column;
+    text-align: -webkit-center !important;
+    padding: 2rem;
+    width: 28rem;
+  }
+  &__user {
+    display: flex;
+    //margin-left: 1rem;
+    //margin-top: 2rem;
+  }
+  &__data {
+    display: flex;
+  }
+  &__questions {
+    display: flex;
+    flex-direction: column;
+    margin-right: 5rem;
+  }
+  &__image {
+    margin-right: 1rem;
+  }
 }
