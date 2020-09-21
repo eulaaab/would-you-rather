@@ -19,7 +19,7 @@ class Home extends Component {
     const { userQuestionsData } = this.props;
     const { answeredIds, unansweredIds } = userQuestionsData;
     const { value } = this.state;
-    console.log("unanswered", unansweredIds);
+    //console.log("unanswered", unansweredIds);
     return (
       <div>
         <Paper>
@@ -31,7 +31,7 @@ class Home extends Component {
         {value === 0 && (
           <div className="question__container">
             {unansweredIds.map((qID) => (
-              <Paper>
+              <Paper key={qID}>
                 <QuestionCard id={qID} key={qID} />
               </Paper>
             ))}

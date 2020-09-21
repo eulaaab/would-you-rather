@@ -1,4 +1,5 @@
 import { saveQuestion, saveQuestionAnswer } from "../utils/api";
+
 export const RECEIVE_QUESTIONS = "RECEIVE QUESTIONS";
 export const ADD_QUESTION = "ADD QUESTION";
 export const SAVE_ANSWER = "SAVE_ANSWER";
@@ -30,22 +31,26 @@ export function handleAddNewQuestion(optionOneText, optionTwoText) {
 }
 
 //save the answer action creator function
-export function saveAnswer(authedUser, qId, answer) {
+export function saveAnswer(authedUser, id, selected) {
   return {
     type: SAVE_ANSWER,
     authedUser,
-    qId,
-    answer,
+    id,
+    selected,
   };
 }
 
 //action to take the answered value from the unanaswered question
-export function handleSaveQuestionAnswer(qid, answer) {
+export function handleSaveQuestionAnswer(id, selected) {
   return (dispatch, getState) => {
     const { authedUser } = getState();
-    return saveQuestionAnswer({ authedUser, qid, answer }).then(() =>
-      dispatch(saveAnswer(authedUser, qid, answer))
-    );
+    console.log("this is the id", id);
+    console.log("this is selected Answer", selected);
+    return saveQuestionAnswer({
+      authedUser,
+      qid: id,
+      answer: selected,
+    }).then((question) => dispatch(saveAnswer(authedUser, id, selected)));
     //then save it.
     //   return saveAnswer({
     //     authedUser,

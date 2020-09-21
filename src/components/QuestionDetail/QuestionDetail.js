@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, withRouther, Redirect } from "react-router-dom";
+import { Link, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import "./QuestionDetail.scss";
 import { handleSaveQuestionAnswer } from "../../actions/questions";
@@ -21,24 +21,23 @@ import {
 
 class QuestionDetail extends Component {
   state = {
-    selectedAnswer: "",
+    selected: "",
     toHome: false,
   };
 
   handleOptionChange = (value) => {
+    //const { selectedAnswer } = e.target.value;
     this.setState(() => ({
-      selectedAnswer: value,
+      selected: value,
     }));
   };
   handleSubmitAnswer = (e) => {
     e.preventDefault();
     const { authedUser, id } = this.props;
-    const { selectedAnswer } = this.state;
-    this.props.dispatch(
-      handleSaveQuestionAnswer({ qId: id, answer: selectedAnswer })
-    );
+    const { selected } = this.state;
+    this.props.dispatch(handleSaveQuestionAnswer(id, selected));
     this.setState(() => ({
-      selectedAnswer: "",
+      selected: "",
       toHome: id ? false : true,
     }));
   };
@@ -56,8 +55,10 @@ class QuestionDetail extends Component {
       optionOneVotes,
       totalVotes,
     } = this.props;
-    console.log("selected answer", this.state.selectedAnswer);
-    const { selectedAnswer, toHome } = this.state;
+    const { optionOne, optionTwo } = question;
+    console.log(" option one", optionOne);
+    console.log("option two", optionTwo);
+    const { toHome } = this.state;
     if (toHome === true) {
       return <Redirect to="/home" />;
     }
@@ -128,14 +129,14 @@ class QuestionDetail extends Component {
                 </FormControl>
                 {question.optionTwo.votes.includes(authedUser) ? (
                   <FormControlLabel
-                    value="optionOne"
+                    value="optionTwo"
                     control={<Radio />}
                     label={question.optionTwo.text}
                     checked
                   />
                 ) : (
                   <FormControlLabel
-                    value="optionOne"
+                    value="optionTwo"
                     control={<Radio />}
                     label={question.optionTwo.text}
                     disabled
@@ -168,7 +169,7 @@ class QuestionDetail extends Component {
                     <RadioGroup
                       aria-label="question"
                       name="question"
-                      value={this.state.selectedAnswer}
+                      value={this.state.selected}
                       onChange={(e) =>
                         this.handleOptionChange(e.currentTarget.value)
                       }
@@ -190,7 +191,7 @@ class QuestionDetail extends Component {
                     variant="contained"
                     color="primary"
                     style={{ marginBottom: "2rem" }}
-                    disabled={!this.state.selectedAnswer}
+                    disabled={!this.state.selected}
                     type="submit"
                   >
                     Submit
@@ -248,4 +249,4 @@ function mapStateToProps({ authedUser, users, questions }, { match }) {
   };
 }
 
-export default connect(mapStateToProps)(QuestionDetail);
+export default withRouter(connect(mapStateToProps)(QuestionDetail));

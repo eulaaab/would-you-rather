@@ -15,7 +15,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { withStyles } from "@material-ui/core/styles";
 import "../../App.css";
 import PropTypes from "prop-types";
-import { setAuthedUser } from "../../actions/authedUser";
+import { setAuthedUser, clearAuthedUser } from "../../actions/authedUser";
 
 const styles = (theme) => ({
   root: {
@@ -36,6 +36,7 @@ const styles = (theme) => ({
 class Login extends React.Component {
   state = {
     selectedUser: "",
+    toHome: false,
   };
 
   handleChangeUser = (value) => {
@@ -51,9 +52,9 @@ class Login extends React.Component {
   };
 
   render() {
-    console.log("selectedUser state", this.state.selectedUser);
+    //console.log("selectedUser state", this.state.selectedUser);
     const { users } = this.props;
-    console.log("this is the user", this.state.selectedUser);
+    //console.log("this is the user", this.state.selectedUser);
     //console.log("this is the the value", value);
     return (
       <div className="login">
