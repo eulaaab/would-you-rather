@@ -22,10 +22,10 @@ export default function questions(state = {}, action) {
       return {
         ...state,
         [action.id]: {
-          ...state[action.qid],
+          ...state[action.id],
           [action.selected]: {
-            ...state[action.qid][action.selected],
-            votes: state[action.qid][action.selected].votes.concat([
+            ...state[action.id][action.selected],
+            votes: state[action.id][action.selected].votes.concat([
               action.authedUser,
             ]),
           },

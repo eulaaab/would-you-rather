@@ -47,7 +47,7 @@ export function handleSaveQuestionAnswer(id, selected) {
     console.log("this is the id", id);
     console.log("this is selected Answer", selected);
     return saveQuestionAnswer({
-      authedUser,
+      authedUser: authedUser,
       qid: id,
       answer: selected,
     }).then((question) => dispatch(saveAnswer(authedUser, id, selected)));

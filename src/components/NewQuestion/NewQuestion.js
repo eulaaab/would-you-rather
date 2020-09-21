@@ -15,42 +15,42 @@ import { Redirect } from "react-router-dom";
 
 class NewQuestion extends Component {
   state = {
-    optionOneText: "",
-    optionTwoText: "",
+    optionOne: "",
+    optionTwo: "",
     toHome: false,
   };
 
   handleInputOneChange = (e) => {
-    const { optionOneText } = e.target.value;
+    const { optionOne } = e.target.value;
     this.setState(() => ({
-      optionOneText,
+      optionOne,
     }));
   };
 
   handleInputTwoChange = (e) => {
-    const { optionTwoText } = e.target.value;
+    const { optionTwo } = e.target.value;
     this.setState(() => ({
-      optionTwoText,
+      optionTwo,
     }));
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { optionOneText, optionTwoText } = this.state;
+    const { optionOne, optionTwo } = this.state;
 
     this.props
-      .dispatch(handleAddNewQuestion(optionOneText, optionTwoText))
+      .dispatch(handleAddNewQuestion(optionOne, optionTwo))
       .then(() => ({
         // toHome: true,
-        optionOneText: "",
-        optionTwoText: "",
+        optionOne: "",
+        optionTwo: "",
       }));
   };
   render() {
     const { handleInputOneChange, handleInputTwoChange } = this.props;
-    const { optionOneText, optionTwoText, toHome } = this.state;
-    console.log("handle input one", this.state.optionOneText);
-    console.log("handle input two", optionTwoText);
+    const { optionOne, optionTwo, toHome } = this.state;
+    console.log("handle input one", this.state.optionOne);
+    console.log("handle input two", optionTwo);
     // if (toHome) {
     //   return <Redirect to="/" />;
     // }
@@ -70,7 +70,7 @@ class NewQuestion extends Component {
                 <TextField
                   type="text"
                   id="optionOneText"
-                  defaultValue={optionOneText}
+                  defaultValue={optionOne}
                   label="Option One"
                   variant="filled"
                   onChange={handleInputOneChange}
@@ -79,7 +79,7 @@ class NewQuestion extends Component {
                 <TextField
                   type="text"
                   id="optionTwoText"
-                  defaultValue={optionTwoText}
+                  defaultValue={optionTwo}
                   label="Option Two"
                   variant="filled"
                   onChange={handleInputTwoChange}

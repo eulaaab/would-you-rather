@@ -222,18 +222,18 @@ function mapStateToProps({ authedUser, users, questions }, { match }) {
   const question = questions[id];
   const author = question ? users[question.author] : null;
   const authorImage = question ? users[question.author].avatarURL : null;
-  const optionOneVotes = question.optionOne.votes
-    ? question.optionOne.votes.length
-    : 0;
-  const optionTwoVotes = question.optionTwo.votes
-    ? question.optionTwo.votes.length
-    : 0;
+  const optionOneVotes = question ? question.optionOne.votes.length : 0;
+  const optionTwoVotes = question ? question.optionTwo.votes.length : 0;
   const isOneAnswered = question.optionOne.votes.includes(authedUser);
   const isTwoAnswered = question.optionTwo.votes.includes(authedUser);
   const answeredQuestion = isOneAnswered || isTwoAnswered;
   const totalVotes = optionOneVotes + optionTwoVotes;
-  const optionOnePercent = ((optionOneVotes / totalVotes) * 100).toFixed();
-  const optionTwoPercent = ((optionTwoVotes / totalVotes) * 100).toFixed();
+  const optionOnePercent = question
+    ? ((optionOneVotes / totalVotes) * 100).toFixed()
+    : 0;
+  const optionTwoPercent = question
+    ? ((optionTwoVotes / totalVotes) * 100).toFixed()
+    : 0;
   return {
     id,
     authedUser,

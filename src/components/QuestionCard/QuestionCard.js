@@ -10,7 +10,7 @@ class QuestionCard extends Component {
     e.preventDefault();
   };
   render() {
-    //console.log("props in question card", this.props.question);
+    console.log("props in question card", this.props.question);
     //console.log("author", this.props.author.name);
     //console.log("question option One", this.props.question.optionOne);
     const { author, question, id } = this.props;
@@ -31,7 +31,7 @@ class QuestionCard extends Component {
 
         <div>
           <Typography variant="h6" style={{ color: "#FF0000" }}>
-            {question.optionOne.text}
+            {question ? question.optionOne.text : ""}
           </Typography>
           <Typography>OR ...</Typography>
           <Button
