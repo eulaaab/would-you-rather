@@ -18,8 +18,7 @@ class Home extends Component {
   render() {
     const { userQuestionsData } = this.props;
     const { answeredIds, unansweredIds } = userQuestionsData;
-    //const { value } = this.state;
-    //console.log("unanswered", unansweredIds);
+
     return (
       <div>
         <Paper>
@@ -52,13 +51,15 @@ class Home extends Component {
 }
 
 function mapStateToProps({ authedUser, users, questions }) {
-  const answeredIds = Object.keys(users[authedUser].answers);
+  const answeredIds = Object.keys(users[authedUser].answers).sort(
+    (a, b) => questions[b].timestamp - questions[a].timestamp
+  );
   //const answeredIds = Object.values(questions)
   //  .filter((question) => answeredIds.includes(question.id))
   // .sort((a, b) => b.timestamp - a.timestamp).id;
   const unansweredIds = Object.keys(questions)
     .filter((question) => !answeredIds.includes(question))
-    .sort((a, b) => b.timestamp - a.timestamp);
+    .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
 
   return {
     userQuestionsData: {

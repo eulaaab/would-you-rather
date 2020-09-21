@@ -42,7 +42,6 @@ class App extends Component {
               LoggedIn={LoggedIn}
             />
             <Route path="/" exact component={Login} />
-            <Route path="/error" exact component={NotFound} />
           </div>
         )}
       </Router>

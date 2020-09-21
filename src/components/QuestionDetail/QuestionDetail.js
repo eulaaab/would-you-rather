@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import "./QuestionDetail.scss";
 import { handleSaveQuestionAnswer } from "../../actions/questions";
+import NotFound from "../NotFound/NotFound";
 import {
   Avatar,
   Box,
@@ -21,7 +22,6 @@ import {
 class QuestionDetail extends Component {
   state = {
     selected: "",
-    toHome: false,
   };
 
   handleOptionChange = (value) => {
@@ -53,13 +53,10 @@ class QuestionDetail extends Component {
       optionOneVotes,
       totalVotes,
     } = this.props;
-    const { optionOne, optionTwo } = question;
-    console.log(" option one", optionOne);
-    console.log("option two", optionTwo);
-    const { toHome } = this.state;
-    // if (toHome === true) {
-    //   return <Redirect to="/home" />;
-    // }
+
+    if (!question) {
+      return <Redirect to="/error" />;
+    }
     return (
       <div>
         {answeredQuestion ? (
@@ -222,8 +219,12 @@ function mapStateToProps({ authedUser, users, questions }, { match }) {
   const authorImage = question ? users[question.author].avatarURL : null;
   const optionOneVotes = question ? question.optionOne.votes.length : 0;
   const optionTwoVotes = question ? question.optionTwo.votes.length : 0;
-  const isOneAnswered = question.optionOne.votes.includes(authedUser);
-  const isTwoAnswered = question.optionTwo.votes.includes(authedUser);
+  const isOneAnswered = question
+    ? question.optionOne.votes.includes(authedUser)
+    : "";
+  const isTwoAnswered = question
+    ? question.optionTwo.votes.includes(authedUser)
+    : "";
   const answeredQuestion = isOneAnswered || isTwoAnswered;
   const totalVotes = optionOneVotes + optionTwoVotes;
   const optionOnePercent = question
