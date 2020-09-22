@@ -56,11 +56,6 @@ class Login extends React.Component {
               }}
               onChange={(e) => this.handleChangeUser(e.target.value)}
             >
-              {/*
-                  <MenuItem value="" disabled>
-                  Select User
-                </MenuItem>
-                */}
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>

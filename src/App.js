@@ -9,7 +9,6 @@ import LeaderBoard from "./components/LeaderBoard/LeaderBoard";
 import QuestionDetail from "./components/QuestionDetail/QuestionDetail";
 import Login from "./components/Login/Login";
 import Nav from "./components/Nav";
-import NotFound from "./components/NotFound/NotFound";
 
 class App extends Component {
   componentDidMount() {
@@ -57,18 +56,5 @@ function mapStateToProps({ authedUser, users }) {
     authedUserAvatar: authedUser ? users[authedUser].avatarURL : "",
   };
 }
-
-// function mapStateToProps({ users, authedUser }) {
-//   return {
-//     users: Object.keys(users).map((user) => {
-//       return {
-//         id: user.id,
-//         name: user.name,
-//         avatar: user.avatarURL,
-//       };
-//     }),
-//     selectedUser: authedUser,
-//   };
-// }
 
 export default connect(mapStateToProps)(App);

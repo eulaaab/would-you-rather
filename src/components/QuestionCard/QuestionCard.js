@@ -9,11 +9,7 @@ class QuestionCard extends Component {
     e.preventDefault();
   };
   render() {
-    //console.log("props in question card", this.props.question);
-    //console.log("author", this.props.author.name);
-    //console.log("question option One", this.props.question.optionOne);
     const { author, question, id } = this.props;
-    //const answeredQuestions =
     return (
       <div className="question__card">
         <div className="question__user">

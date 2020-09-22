@@ -49,10 +49,6 @@ class NewQuestion extends Component {
     });
   };
   render() {
-    //const { handleInputOneChange, handleInputTwoChange } = this.props;
-    //const { toHome } = this.state;
-    // console.log("handle input one", this.state.optionOne);
-    // console.log("handle input two", optionTwo);
     if (this.state.toHome === true) {
       return <Redirect to="/home" />;
     }

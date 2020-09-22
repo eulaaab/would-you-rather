@@ -184,7 +184,7 @@ class QuestionDetail extends Component {
                         {author.name}
                       </Typography>{" "}
                     </div>
-                    <form onClick={this.handleSubmitAnswer}>
+                    <form onSubmit={this.handleSubmitAnswer}>
                       <FormControl component="fieldset">
                         <RadioGroup
                           aria-label="question"
