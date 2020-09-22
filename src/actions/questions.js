@@ -51,12 +51,5 @@ export function handleSaveQuestionAnswer(id, selected) {
       qid: id,
       answer: selected,
     }).then(() => dispatch(saveAnswer(authedUser, id, selected)));
-    //then save it.
-    //   return saveAnswer({
-    //     authedUser,
-    //     qId,
-    //     answer,
-    //   }).then(() => dispatch(saveQuestionAnswer(authedUser, qId, answer)));
-    // };
   };
 }
