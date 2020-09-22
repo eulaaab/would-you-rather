@@ -26,7 +26,6 @@ class QuestionDetail extends Component {
   };
 
   handleOptionChange = (value) => {
-    //const { selectedAnswer } = e.target.value;
     this.setState(() => ({
       selected: value,
     }));
@@ -55,162 +54,178 @@ class QuestionDetail extends Component {
       totalVotes,
     } = this.props;
 
-    if (!question) {
+    if (this.props.isWrongID === true) {
       return <NotFound />;
     }
+
+    // if (question[id] !== this.props.match.params.id) {
+    //   return <NotFound />;
+    // }
     return (
-      <div>
-        {answeredQuestion ? (
+      <>
+        {question ? (
           <div>
-            <Paper>
-              <Tabs value={0} centered>
-                <Tab label="ANSWERED QUESTION" />
-              </Tabs>
-            </Paper>
-            <Paper style={{ margin: "5rem 20rem" }}>
-              <div className="detail__card">
-                <div className="detail__user" style={{ marginLeft: "1rem" }}>
-                  <Typography variant="h6">Asked by</Typography>{" "}
-                  <Avatar
-                    src={authorImage}
-                    alt={authorImage}
-                    className="detail__avatar"
-                  />{" "}
-                  <Typography color="primary" variant="h5">
-                    {author.name}
-                  </Typography>{" "}
-                </div>
-                <FormControl>
-                  <RadioGroup>
-                    {question.optionOne.votes.includes(authedUser) ? (
-                      <FormControlLabel
-                        value="optionOne"
-                        control={<Radio />}
-                        label={question.optionOne.text}
-                        checked
-                      >
-                        {" "}
-                        {optionOnePercent}{" "}
-                      </FormControlLabel>
-                    ) : (
-                      <FormControlLabel
-                        value="optionOne"
-                        control={<Radio />}
-                        label={question.optionOne.text}
-                        disabled
-                      />
-                    )}
-                  </RadioGroup>{" "}
-                  <Box display="flex" alignItems="center">
-                    <Box width="100%" mr={1}>
-                      <LinearProgress
-                        variant="determinate"
-                        value={(optionOneVotes / totalVotes) * 100}
+            {answeredQuestion ? (
+              <div>
+                <Paper>
+                  <Tabs value={0} centered>
+                    <Tab label="ANSWERED QUESTION" />
+                  </Tabs>
+                </Paper>
+                <Paper style={{ margin: "5rem 20rem" }}>
+                  <div className="detail__card">
+                    <div
+                      className="detail__user"
+                      style={{ marginLeft: "1rem" }}
+                    >
+                      <Typography variant="h6">Asked by</Typography>{" "}
+                      <Avatar
+                        src={authorImage}
+                        alt={authorImage}
+                        className="detail__avatar"
                       />{" "}
-                      <Typography variant="body2" color="textSecondary">
-                        {optionOnePercent} %
-                      </Typography>
-                      <Box>
-                        {" "}
-                        <Typography variant="body2" color="textSecondary">
-                          {optionOneVotes} out of {totalVotes} votes
-                        </Typography>{" "}
+                      <Typography color="primary" variant="h5">
+                        {author.name}
+                      </Typography>{" "}
+                    </div>
+                    <FormControl>
+                      <RadioGroup>
+                        {question.optionOne.votes.includes(authedUser) ? (
+                          <FormControlLabel
+                            value="optionOne"
+                            control={<Radio />}
+                            label={question.optionOne.text}
+                            checked
+                          >
+                            {" "}
+                            {optionOnePercent}{" "}
+                          </FormControlLabel>
+                        ) : (
+                          <FormControlLabel
+                            value="optionOne"
+                            control={<Radio />}
+                            label={question.optionOne.text}
+                            disabled
+                          />
+                        )}
+                      </RadioGroup>{" "}
+                      <Box display="flex" alignItems="center">
+                        <Box width="100%" mr={1}>
+                          <LinearProgress
+                            variant="determinate"
+                            value={(optionOneVotes / totalVotes) * 100}
+                          />{" "}
+                          <Typography variant="body2" color="textSecondary">
+                            {optionOnePercent} %
+                          </Typography>
+                          <Box>
+                            {" "}
+                            <Typography variant="body2" color="textSecondary">
+                              {optionOneVotes} out of {totalVotes} votes
+                            </Typography>{" "}
+                          </Box>
+                        </Box>
                       </Box>
-                    </Box>
-                  </Box>
-                  {question.optionTwo.votes.includes(authedUser) ? (
-                    <FormControlLabel
-                      value="optionTwo"
-                      control={<Radio />}
-                      label={question.optionTwo.text}
-                      checked
-                    />
-                  ) : (
-                    <FormControlLabel
-                      value="optionTwo"
-                      control={<Radio />}
-                      label={question.optionTwo.text}
-                      disabled
-                    />
-                  )}
-                  <Box display="flex" alignItems="center">
-                    <Box width="100%" mr={1}>
-                      <LinearProgress
-                        variant="determinate"
-                        value={(optionTwoVotes / totalVotes) * 100}
-                      />{" "}
-                      <Typography variant="body2" color="textSecondary">
-                        {optionTwoPercent} %
-                      </Typography>
-                      <Box>
-                        {" "}
-                        <Typography variant="body2" color="textSecondary">
-                          {optionTwoVotes} out of {totalVotes} votes
-                        </Typography>{" "}
+                      {question.optionTwo.votes.includes(authedUser) ? (
+                        <FormControlLabel
+                          value="optionTwo"
+                          control={<Radio />}
+                          label={question.optionTwo.text}
+                          checked
+                        />
+                      ) : (
+                        <FormControlLabel
+                          value="optionTwo"
+                          control={<Radio />}
+                          label={question.optionTwo.text}
+                          disabled
+                        />
+                      )}
+                      <Box display="flex" alignItems="center">
+                        <Box width="100%" mr={1}>
+                          <LinearProgress
+                            variant="determinate"
+                            value={(optionTwoVotes / totalVotes) * 100}
+                          />{" "}
+                          <Typography variant="body2" color="textSecondary">
+                            {optionTwoPercent} %
+                          </Typography>
+                          <Box>
+                            {" "}
+                            <Typography variant="body2" color="textSecondary">
+                              {optionTwoVotes} out of {totalVotes} votes
+                            </Typography>{" "}
+                          </Box>
+                        </Box>
                       </Box>
-                    </Box>
-                  </Box>
-                </FormControl>
+                    </FormControl>
+                  </div>
+                </Paper>
               </div>
-            </Paper>
+            ) : (
+              <div>
+                <Paper>
+                  <Tabs value={0} centered>
+                    <Tab label="UNANSWERED QUESTION" />
+                  </Tabs>
+                </Paper>
+                <Paper style={{ margin: "5rem 20rem" }}>
+                  <div className="detail__card">
+                    <div
+                      className="detail__user"
+                      style={{ marginLeft: "1rem" }}
+                    >
+                      <Avatar
+                        src={authorImage}
+                        alt={authorImage}
+                        className="detail__avatar"
+                      />
+                      <Typography color="primary" variant="h5">
+                        {author.name}
+                      </Typography>{" "}
+                    </div>
+                    <form onClick={this.handleSubmitAnswer}>
+                      <FormControl component="fieldset">
+                        <RadioGroup
+                          aria-label="question"
+                          name="question"
+                          value={this.state.selected}
+                          onChange={(e) =>
+                            this.handleOptionChange(e.currentTarget.value)
+                          }
+                        >
+                          <FormControlLabel
+                            value="optionOne"
+                            control={<Radio />}
+                            label={question.optionOne.text}
+                          />
+                          <FormControlLabel
+                            value="optionTwo"
+                            control={<Radio />}
+                            label={question.optionTwo.text}
+                          />
+                        </RadioGroup>
+                      </FormControl>
+                      <Button
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        style={{ marginBottom: "2rem" }}
+                        disabled={!this.state.selected}
+                        type="submit"
+                      >
+                        Submit
+                      </Button>
+                    </form>
+                  </div>
+                </Paper>
+              </div>
+            )}
           </div>
         ) : (
-          <div>
-            <Paper>
-              <Tabs value={0} centered>
-                <Tab label="UNANSWERED QUESTION" />
-              </Tabs>
-            </Paper>
-            <Paper style={{ margin: "5rem 20rem" }}>
-              <div className="detail__card">
-                <div className="detail__user" style={{ marginLeft: "1rem" }}>
-                  <Avatar
-                    src={authorImage}
-                    alt={authorImage}
-                    className="detail__avatar"
-                  />
-                  <Typography color="primary" variant="h5">
-                    {author.name}
-                  </Typography>{" "}
-                </div>
-                <form onSubmit={this.handleSubmitAnswer}>
-                  <FormControl component="fieldset">
-                    <RadioGroup
-                      aria-label="question"
-                      name="question"
-                      value={this.state.selected}
-                      onChange={(e) =>
-                        this.handleOptionChange(e.currentTarget.value)
-                      }
-                    >
-                      <FormControlLabel
-                        value="optionOne"
-                        control={<Radio />}
-                        label={question.optionOne.text}
-                      />
-                      <FormControlLabel
-                        value="optionTwo"
-                        control={<Radio />}
-                        label={question.optionTwo.text}
-                      />
-                    </RadioGroup>
-                  </FormControl>
-                  <Button
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    style={{ marginBottom: "2rem" }}
-                    disabled={!this.state.selected}
-                    type="submit"
-                  >
-                    Submit
-                  </Button>
-                </form>
-              </div>
-            </Paper>
-          </div>
+          ""
         )}
-      </div>
+      </>
     );
   }
 }
@@ -236,6 +251,13 @@ function mapStateToProps({ authedUser, users, questions }, { match }) {
   const optionTwoPercent = question
     ? ((optionTwoVotes / totalVotes) * 100).toFixed()
     : 0;
+
+  if (question === undefined) {
+    return {
+      isWrongID: true,
+    };
+  }
+
   return {
     id,
     authedUser,
