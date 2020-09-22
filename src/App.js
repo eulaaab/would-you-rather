@@ -22,14 +22,13 @@ class App extends Component {
         {this.props.LoggedIn && (
           <>
             <Nav authedUser={authedUser} authedUserAvatar={authedUserAvatar} />
-            <Redirect to="/home" />
           </>
         )}
         {!this.props.LoggedIn ? (
           <Login />
         ) : (
           <div>
-            <Route path="/home" exact component={Home} LoggedIn={LoggedIn} />
+            <Route path="/" exact component={Home} LoggedIn={LoggedIn} />
             <Route path="/add" component={NewQuestion} LoggedIn={LoggedIn} />
             <Route
               path="/questions/:id"
@@ -41,7 +40,9 @@ class App extends Component {
               component={LeaderBoard}
               LoggedIn={LoggedIn}
             />
-            <Route path="/" exact component={Login} />
+            {/*
+  <Route path="/" exact component={Login} />
+              */}
           </div>
         )}
       </Router>

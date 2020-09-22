@@ -15,7 +15,7 @@ function Nav(props) {
       <div className="nav__left">
         <Breadcrumbs aria-label="breadcrumb">
           <Button color="secondary">
-            <NavLink to="/home">Home</NavLink>
+            <NavLink to="/">Home</NavLink>
           </Button>
           <Button color="secondary">
             <NavLink to="/add" className="link">
