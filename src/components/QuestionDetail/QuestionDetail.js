@@ -55,10 +55,6 @@ class QuestionDetail extends Component {
     if (this.props.isWrongID === true) {
       return <NotFound />;
     }
-
-    // if (question[id] !== this.props.match.params.id) {
-    //   return <NotFound />;
-    // }
     return (
       <>
         {question ? (

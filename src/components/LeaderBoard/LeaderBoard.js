@@ -15,7 +15,7 @@ class LeaderBoard extends Component {
         </Paper>
         {leaderBoardData.map((id) => (
           <Paper className="leader__card" key={id}>
-            <LeaderBoardCard key={id} id={id} />
+            <LeaderBoardCard id={id} />
           </Paper>
         ))}
       </div>
