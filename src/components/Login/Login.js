@@ -31,7 +31,11 @@ class Login extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { dispatch } = this.props;
-    dispatch(setAuthedUser(this.state.selectedUser));
+    if (this.state.selectedUser === "") {
+      alert("Please select a user");
+    } else {
+      dispatch(setAuthedUser(this.state.selectedUser));
+    }
   };
 
   render() {
