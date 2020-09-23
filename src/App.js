@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./App.scss";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { handleInitialData } from "./actions/shared";
 import Home from "./components/Home/Home";
 import NewQuestion from "./components/NewQuestion/NewQuestion";
@@ -18,30 +18,15 @@ class App extends Component {
     const { authedUser, authedUserAvatar, LoggedIn } = this.props;
     return (
       <Router>
-        {this.props.LoggedIn && (
-          <>
-            <Nav authedUser={authedUser} authedUserAvatar={authedUserAvatar} />
-          </>
-        )}
         {!this.props.LoggedIn ? (
           <Login />
         ) : (
           <div>
-            <Route path="/" exact component={Home} LoggedIn={LoggedIn} />
-            <Route path="/add" component={NewQuestion} LoggedIn={LoggedIn} />
-            <Route
-              path="/questions/:id"
-              component={QuestionDetail}
-              LoggedIn={LoggedIn}
-            />
-            <Route
-              path="/leaderboard"
-              component={LeaderBoard}
-              LoggedIn={LoggedIn}
-            />
-            {/*
-  <Route path="/" exact component={Login} />
-              */}
+            <Nav authedUser={authedUser} authedUserAvatar={authedUserAvatar} />
+            <Route path="/" exact component={Home} />
+            <Route path="/add" component={NewQuestion} />
+            <Route path="/questions/:id" component={QuestionDetail} />
+            <Route path="/leaderboard" component={LeaderBoard} />
           </div>
         )}
       </Router>
