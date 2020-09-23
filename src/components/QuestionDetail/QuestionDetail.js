@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import "./QuestionDetail.scss";
 import { handleSaveQuestionAnswer } from "../../actions/questions";
@@ -16,7 +16,6 @@ import {
   Tabs,
   Tab,
   Paper,
-  CircularProgress,
 } from "@material-ui/core";
 import LinearProgress from "@material-ui/core/LinearProgress";
 
@@ -41,7 +40,6 @@ class QuestionDetail extends Component {
   };
   render() {
     const {
-      id,
       question,
       author,
       authorImage,
